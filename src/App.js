@@ -58,12 +58,12 @@ class App extends Component {
     return (
       <div>
 
-        <select value={this.state.selected_breed}
+        <select className="cat-name" value={this.state.selected_breed}
           onChange={this.onBreedSelectChange}>
           {this.state.breeds.map((breed) => <option key={breed.id} value={breed.id}>{breed.name}</option>)}
         </select>
 
-        <div>
+        <div className="cat-image-container" >
           {this.state.images.map((image) => <img className="cat-image" alt="" src={image.url}></img>)}
         </div>
 
