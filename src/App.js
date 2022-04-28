@@ -3,23 +3,24 @@ import axios from 'axios';
 import './App.css';
 
 axios.defaults.baseURL = 'https://api.thecatapi.com/v1';
-axios.defaults.headers.common['x-api-key'] = 'DEMO-API-KEY';
+//axios.defaults.headers.common['x-api-key'] = 'DEMO-API-KEY';
 
 class App extends Component {
 
   async getBreeds() {
     const res = await axios('/breeds');
     return res.data;
+
   }
   async getCatsImagesByBreed(breed_id, amount) {
     const res = await axios('/images/search?breed_ids=' + breed_id + "&limit=" + amount);
 
-    console.table(res.data)
+
     return res.data;
   }
 
   async loadBreedImages() {
-    console.log('Load Breed Images:', this.state.selected_breed)
+
 
     let breed_images = await this.getCatsImagesByBreed(this.state.selected_breed, 5)
 
@@ -38,7 +39,7 @@ class App extends Component {
     this.onBreedSelectChange = this.onBreedSelectChange.bind(this);
   }
   async onBreedSelectChange(e) {
-    console.log("Breed Selected. ID:", e.target.value)
+
     await this.setState({ selected_breed: e.target.value });
     await this.loadBreedImages();
   }
@@ -49,7 +50,7 @@ class App extends Component {
           this.setState({ breeds: await this.getBreeds() });
         } catch (e) {
 
-          console.error(e)
+
         }
       })();
     }
